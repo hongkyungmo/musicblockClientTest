@@ -45,59 +45,32 @@
 	
 	<script>
 		document.addEventListener("deviceready", onDeviceReady, false);
+		
 		function onDeviceReady() {
 			console.log(navigator.vibrate);
 			alert("device ready!!!!!!!!");
 		}
-
-		var btn1 = document.getElementById("btn1");
-		btn1.onclick = function() {
-			alert("오호라...");
-			navigator.vibrate(3000);
-		};
-
-		/* $(function() {
-			$("body").click(function() {
-				navigator.vibrate(3000);
-			});
-		}); */
-		
-		/* android file system */
-		window.addEventListener('filePluginIsReady', function(){
-			alert('File plugin is ready');
-		}, false);
-		
 		
 		/* android media */
-		var src = "cdvfile://localhost/1/1.mp3";
+		var src = "cdvfile://localhost/persistent/notes/1.mp3";
 		//var src = "cdvfile://";
 		
-		var my_media = new Media(, function(){
+		var my_media = new Media(src, function(){
 			//success
 			alert("media onSuccess");
 		}, function(){
 			//err
 			alert("media onError");
 		});
-
-		// Record audio
-		my_media.startRecord();
 		
-		mediaTimer = setInterval(function () {
-		    // get media amplitude
-		    my_media.getCurrentAmplitude(
-		        // success callback
-		        function (amp) {
-		            alert(amp + "%");
-		        },
-		        // error callback
-		        function (e) {
-		            alert("Error getting amp=" + e);
-		        }
-		    );
-		}, 1000);
 
-		
+		var btn1 = document.getElementById("btn1");
+		btn1.onclick = function() {
+			alert("오호라...");
+			//navigator.vibrate(3000);
+			$("body").append("<div style='width:100px;height:100px;background-color:green;position:absolute;top:100px;'>aaaaaaaa</div>")
+			my_media.play();
+		};
 		
 	</script>
 	<div class="app">
