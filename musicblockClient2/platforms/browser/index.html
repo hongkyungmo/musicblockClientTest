@@ -47,7 +47,7 @@
 		document.addEventListener("deviceready", onDeviceReady, false);
 		function onDeviceReady() {
 			console.log(navigator.vibrate);
-			alert("aaa");
+			alert("device ready!!!!!!!!");
 		}
 
 		var btn1 = document.getElementById("btn1");
@@ -55,17 +55,21 @@
 			alert("오호라...");
 			navigator.vibrate(3000);
 		};
-		
-		document.addEventListener("deviceready", onDeviceReady, false);
-		function onDeviceReady(){
-			alert("device ready!!!");
-		}
 
 		/* $(function() {
 			$("body").click(function() {
 				navigator.vibrate(3000);
 			});
 		}); */
+		
+		/* android file system */
+		window.addEventListener('filePluginIsReady', function(){
+			alert('File plugin is ready');
+		}, false);
+		
+		
+		
+		
 	</script>
 	<div class="app">
 		<h1>Apache Cordova</h1>
@@ -74,7 +78,7 @@
 			<p class="event received">Device is Ready</p>
 		</div>
 	</div>
-	
+	<img src="cdvfile://localhost/persistent/img/logo.png" />
 	<!-- <script type="text/javascript" src="js/index.js"></script>
 	<script type="text/javascript">
 		app.initialize();
