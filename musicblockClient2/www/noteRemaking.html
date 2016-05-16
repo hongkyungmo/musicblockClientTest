@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+
+
+	<!-- jQuery CDN -->
+	<link rel="stylesheet" href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+	<script src="https://code.jquery.com/jquery-2.2.2.js"></script>
+	<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+	<!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
+
+	<script>
+		window.AudioContext = window.AudioContext || window.webkitAudioContext;
+
+		//오디오컨텍스트 생성
+		var audioContext = new AudioContext();
+
+		//오실레이터, 게인 생성
+		var osc1 = audioContext.createOscillator();
+		var osc2 = audioContext.createOscillator();
+		var gain1 = audioContext.createGain();
+		var gain2 = audioContext.createGain();
+		var cprs = audioContext.createDynamicsCompressor();
+		
+		//볼륨 설정
+		gain1.gain.value = 0;
+		gain2.gain.value = 0;
+		
+		//wave 형태 결정
+		osc1.type="sawtooth";
+		osc2.type="sine";
+		
+		//오실레이터->게인->스피커 연결
+		osc1.connect(gain1);
+		osc2.connect(gain2);
+		gain1.connect(cprs);
+		gain2.connect(cprs);
+		cprs.connect(audioContext.destination);
+		
+
+		osc1.start(0);
+		osc2.start(0);
+		
+		
+		$(function(){
+			$("#start").bind("click", function(){
+				gain1.gain.setTargetAtTime(0.5, audioContext.currentTime, 0.1);
+				gain2.gain.setTargetAtTime(2, audioContext.currentTime, 0.1);
+			});
+			$("#end").bind("click", function(){
+				gain1.gain.setTargetAtTime(0, audioContext.currentTime, 0.1);
+				gain2.gain.setTargetAtTime(0, audioContext.currentTime, 0.1);
+			});
+		});
+
+	</script>
+</head>
+
+<body>
+	<div id="start" style="width:100px;height:100px;background-color:red;">start</div>
+	<div id="end" style="width:100px;height:100px;background-color:blue;">end</div>
+</body>
+
+</html>
