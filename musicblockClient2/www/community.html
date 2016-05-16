@@ -379,13 +379,16 @@ $(function() {
 		var test1 = 0;
 		var max1 = 50; 
 		$(function() {
-			var intervalClearer = setInterval(function(){
+			/* var intervalClearer = setInterval(function(){
 				if(sequenceFlag == true){
 					RecvFromServer();
 					console.log("intervalClearer:"+intervalClearer);
 					clearInterval(intervalClearer);
 				}
-			}, 10);
+			}, 10); */
+			setTimeout(RecvFromServer(), 3000);
+			
+			
 			function RecvFromServer() {
 				//$(window).scroll(function() {
 									var scrollHeight = parseInt($(window).scrollTop()+ $(window).height()); //윈도우는 딱 보이는 화면의 크기
