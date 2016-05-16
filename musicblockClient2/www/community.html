@@ -406,6 +406,7 @@ $(function() {
 														data : "",
 														async : false,
 														success : function(data) {
+															alert("ajax호출됨!");
 															console.log("JSONData : "+ JSON.stringify(data)); //stringify은 string type으로 바꿔줌
 															//데이터 블럭값이있을경우에만
 															if (data['block'] != null) {
@@ -432,7 +433,7 @@ $(function() {
 															}//end of datablock문
 														},//end of success문
 														error : function(status) {
-															console.log(status);
+															alert(status);
 														}//end of error문
 													})//end of ajax문
 												//}//end of for문 test1
